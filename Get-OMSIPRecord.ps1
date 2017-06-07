@@ -67,6 +67,8 @@ Begin{
 
 
 Begin{
+    $OMSIPRecords = @()
+
     try {
         if($CommuncationProtocol -eq 'WMI'){$IPdata = Get-WmiObject -Class Win32_NetworkAdapterConfiguration -ComputerName $HostName }
 
@@ -88,20 +90,26 @@ Process{
 
             Foreach($IntIP in $InterfaceIps){
                 $record = OmsIPRecord::New($IntIP,$IP.PSComputername,$IP.index,$IP.description)
+                $OMSIPRecords += $record
             }
+        }
 
              If($CommuncationProtocol -eq 'CIM'){
 
                 $record = OmsIPRecord::New($IP.IPAddress,$IP.PSComputername,$IP.index,$IP.description)
+                $OMSIPRecords += $record
             }
         }
 
 
 
 
-        }
+    }
+    End{
+        $OMSIPRecords
+    }
 
-        OmsIPRecord::New()
+
 
     }
 }
