@@ -4,7 +4,7 @@
     [String]$Hostname
     [string]$Interface
     [String]$InterfaceDescription
-    [DateTime]$UTCtime
+
 
         OmsIPRecord () {}
 
@@ -14,7 +14,7 @@
         $this.Hostname= $Hostname
         $this.Interface = $Interface
         $this.InterfaceDescription= $InterfaceDescription
-        $this.UTCtime = (Get-date).ToUniversalTime()
+
         }
         }
 
@@ -64,30 +64,6 @@ Param(
 )
 
 Begin{
-
-<#class OmsIPRecord{
-
-    [String]$IPAddress
-    [String]$Hostname
-    [string]$Interface
-    [String]$InterfaceDescription
-    [DateTime]$UTCtime
-
-        OmsIPRecord () {}
-
-
-        OmsIPRecord ([String]$IPAddress,[String]$Hostname,[string]$Interface,[String]$InterfaceDescription){
-        $this.IPAddress = $IPAddress
-        $this.Hostname= $Hostname
-        $this.Interface = $Interface
-        $this.InterfaceDescription= $InterfaceDescription
-        $this.UTCtime = (Get-date).ToUniversalTime()
-        }
-
-    }#>
-
-    $Records = @()
-
     try {
         if($CommuncationProtocol -eq 'WMI'){$IPdata = Get-WmiObject -Class Win32_NetworkAdapterConfiguration -ComputerName $HostName|where{$_.IPAddress} }
 
@@ -116,18 +92,18 @@ Process{
               if(!$IncludeIPv6){ $interfaceips = $interfaceips|where Addressfamily -NotLike "*6*"}
 
                 Foreach($IntIP in $InterfaceIps){
-                    $record = [OmsIPRecord]::new($intIP.IPaddress,$intIP.PScomputername,$intIP.interfaceindex,$intip.interfacealias) 
-                    
+                    $record = [OmsIPRecord]::new($intIP.IPaddress,$intIP.PScomputername,$intIP.interfaceindex,$intip.interfacealias)
+
                     #$record.IPAddress = $intIP.IPaddress
                     #$record.Hostname = $intIP.PScomputername
                     #$record.Interface = $intIP.interfaceindex
                     #$record.InterfaceDescription = $intip.interfacealias
                     #$record.UTCtime = (Get-date).ToUniversalTime()
                     #}
-                    
+
                     $record
 
-                  
+
                     }
             }
         }
@@ -137,7 +113,7 @@ Process{
 
     }
 End{
-        #$OMSIPRecords
+
     }
 }
 
