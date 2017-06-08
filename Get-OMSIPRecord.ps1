@@ -66,7 +66,7 @@ Begin{
 
 
 
-Begin{
+
     $OMSIPRecords = @()
 
     try {
@@ -105,14 +105,10 @@ Process{
 
 
     }
-    End{
+End{
         $OMSIPRecords
     }
-
-
-
-    }
 }
 
 
-}
+
