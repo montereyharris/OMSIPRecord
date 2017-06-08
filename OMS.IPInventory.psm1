@@ -18,7 +18,7 @@
         }
         }
 
-Function Get-OmSIPRecord {
+Function Get-OmsIPRecord {
 <#
 .SYNOPSIS
 Short description

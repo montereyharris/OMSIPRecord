@@ -58,10 +58,10 @@ PowerShellVersion = '5.0'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = 'Get-OmSIPRecord'
+FunctionsToExport = '*'
 
 # Cmdlets to export from this module
-CmdletsToExport = '*'
+CmdletsToExport = 'Get-OmsIPRecord'
 
 # Variables to export from this module
 VariablesToExport = '*'
