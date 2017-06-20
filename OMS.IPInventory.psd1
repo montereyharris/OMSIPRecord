@@ -61,7 +61,7 @@ PowerShellVersion = '5.0'
 FunctionsToExport = '*'
 
 # Cmdlets to export from this module
-CmdletsToExport = 'Get-OmsIPRecord'
+CmdletsToExport = '*'
 
 # Variables to export from this module
 VariablesToExport = '*'
