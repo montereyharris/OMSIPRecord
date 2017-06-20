@@ -1,4 +1,5 @@
-﻿class OmsIPRecord{
+﻿
+class OmsIPRecord{
 
     [String]$IPAddress
     [String]$Hostname
@@ -6,31 +7,39 @@
     [String]$InterfaceDescription
 
 
-        OmsIPRecord () {}
+    OmsIPRecord () {}
 
 
-        OmsIPRecord ([String]$IPAddress,[String]$Hostname,[string]$Interface,[String]$InterfaceDescription){
+    OmsIPRecord ([String]$IPAddress,[String]$Hostname,[string]$Interface,[String]$InterfaceDescription){
         $this.IPAddress = $IPAddress
         $this.Hostname= $Hostname
         $this.Interface = $Interface
         $this.InterfaceDescription= $InterfaceDescription
 
-        }
-        }
+            }
+}
+
+
 
 Function Get-OmsIPRecord {
 <#
 .SYNOPSIS
-Short description
+    Use CIM or WMI get IP object to submit to OMS
 
 .DESCRIPTION
-Long description
+Use CIM or WMI get IP object to submit to OMS
 
-.PARAMETER ComputerName
-Parameter description
+.PARAMETER HostName
+    Which Computer you want the solicit IPs from or name of HostName
+
+.PARAMETER IncludeIPv6
+    Include IPv6 IP objects
+
+.PARAMETER CommuncationProtocol
+    Explictly define whether you want to use CIM or WMI
 
 .EXAMPLE
-An example
+   Get-OMSIPRecord -HostName SRV01 -CommuncationProtocol CIM
 
 .NOTES
 General notes
@@ -54,13 +63,8 @@ Param(
     # Parameter help description
     [Parameter(Mandatory=$false,ParameterSetName ='Manual')]
     [Switch]
-    $Manual,
+    $Manual
 
-    # Parameter help description
-    [Parameter(Mandatory=$false,ParameterSetName ='Manual')]
-    [ValidateScript({Test-path -Path $_})]
-    [String]
-    $ParameterName
 )
 
 Begin{
